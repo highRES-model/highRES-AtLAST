@@ -1,0 +1,252 @@
+set
+El /
+Import
+Alkaline
+PEM
+/
+
+set
+H2T /
+CG
+TiFe
+/
+
+set
+FC /
+PEMFC
+/
+
+parameter
+electrolyzer_lim_pcap_z /
+* in MW
+$if "%altitude%" == "2500" SITE.import.UP inf
+$if "%altitude%" == "2500" SITE.Alkaline.UP inf
+$if "%altitude%" == "2500" SITE.PEM.UP inf
+$if "%altitude%" == "5000" ATL.import.UP inf
+$if "%altitude%" == "5000" ATL.Alkaline.UP inf
+$if "%altitude%" == "5000" ATL.PEM.UP inf
+/
+
+parameter
+import_hour_z /
+* in hours
+$ifThen "%altitude%" == "2500"
+$INCLUDE data_inputs/import_hrs_2500.dd
+$endIf
+$ifThen "%altitude%" == "5000"
+$INCLUDE data_inputs/import_hrs_5000.dd
+$endIf
+/
+
+parameter
+electrolyzer_exist_pcap_z /
+* in MW
+/
+
+parameter
+h2_storage_lim_pcap_z /
+* in kg
+$if "%altitude%" == "2500" SITE.TiFe.UP inf
+$if "%altitude%" == "5000" ATL.TiFe.UP inf
+$if "%altitude%" == "2500" SITE.CG.UP inf
+$if "%altitude%" == "5000" ATL.CG.UP inf
+/
+
+parameter
+h2_storage_exist_pcap_z /
+* in kg
+/
+
+parameter
+fuel_cell_lim_pcap_z /
+* in MW
+$if "%altitude%" == "2500" SITE.PEMFC.UP inf
+$if "%altitude%" == "5000" ATL.PEMFC.UP inf
+/
+
+parameter
+fuel_cell_exist_pcap_z /
+* in MW
+/
+
+parameter
+PLT_elect /
+* in years
+Import 18
+Alkaline 18
+PEM 18
+/
+
+parameter
+PLT_h2stor /
+* in years
+TiFe 18
+CG 18
+/
+
+parameter
+PLT_fuelcell /
+* in years
+PEMFC 18
+/
+
+* Electrolyzer
+
+parameter
+eff_electrolyzer /
+* no unit
+Import 1
+Alkaline 0.78
+PEM 0.83
+/
+
+parameter
+HHV_h2 /
+* in MWh per kg
+0.0394
+/
+
+parameter
+max_nom_pcap_electrolyzer /
+* in MW
+*Import 0
+Import inf
+Alkaline 100
+PEM 100
+/
+
+* Hydrogen tank
+
+parameter
+eff_tank /
+* no unit
+CG 0.95
+TiFe 0.95
+/
+
+parameter
+h2_store_min /
+* no unit
+CG 0.02
+TiFe 0.02
+/
+
+parameter
+h2_store_max /
+* no unit
+CG 1
+TiFe 1
+/
+
+* Fuel cell
+
+parameter
+eff_fuel_cell /
+* no unit
+PEMFC 0.58
+/
+
+parameter
+LHV_h2 /
+* in MWh per kg
+0.0333
+/
+
+parameter
+max_nom_pcap_fuel_cell /
+* in MW
+PEMFC 100
+/
+
+** Costs
+
+parameter
+electrolyzer_capex2030 /
+* in kUSD per MW
+Import 0
+* base case
+Alkaline 434.36
+PEM 482.99
+* low case
+*Alkaline 246.56
+*PEM 326.96
+* high case
+*Alkaline 773.66
+*PEM 773.66
+/
+
+parameter
+electrolyzer_fom /
+*these value are kUSD per MW per yr
+* base case
+Import 0
+Alkaline 14.1
+PEM 14.1
+* low case
+*Alkaline 4.93
+*PEM 6.54
+* high case
+*Alkaline 15.47
+*PEM 15.47
+/
+
+parameter
+electrolyzer_varom /
+*value is kUSD per MWh
+*base case
+$if "%altitude%" == "2500" Import 0.055978
+$if "%altitude%" == "5000" Import 0.0628307
+*high case
+*$if "%altitude%" == "2500" Import 0.0629424
+*$if "%altitude%" == "5000" Import 0.069795
+Alkaline 0.0009394
+PEM 0.0009394
+/
+
+parameter
+h2_storage_capex2030 /
+*in kUSD per kgH2
+CG 0.598
+TiFe 0.631
+*low case, high TiFe value as turn off switch
+*CG 0.286
+*TiFe 1.5
+*high case, high TiFe value as turn off switch
+*CG 0.780
+*TiFe 1.5
+/
+
+parameter
+h2_storage_fom /
+* in kUSD per kg
+CG 0.012558
+TiFe 0.013251
+*low case, high TiFe value as turn off switch
+*CG 0.006006
+*TiFe 0.01
+*high case, high TiFe value as turn off switch
+*CG 0.01638
+*TiFe 0.01
+/
+
+parameter
+fuel_cell_capex2030 /
+* in kUSD per MW
+*base
+PEMFC 1581.2
+*low
+*PEMFC 1001.67
+*high
+*PEMFC 1876
+/
+
+parameter
+fuel_cell_fom /
+* in kUSD per MW per year
+PEMFC 14.1
+/
+
+parameter
+fuel_cell_varom /
+PEMFC 0.0009394
+/

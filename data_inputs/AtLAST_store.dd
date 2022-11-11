@@ -1,0 +1,105 @@
+set
+s /
+LFP10HR
+/
+
+parameter
+store_lim_pcap_z /
+* in MW
+$if "%altitude%" == "2500" SITE.LFP10HR.UP inf
+$if "%altitude%" == "5000" ATL.LFP10HR.UP inf
+/
+
+parameter
+store_lim_ecap_z /
+* in MWh
+$if "%altitude%" == "2500" SITE.LFP10HR.UP inf
+$if "%altitude%" == "5000" ATL.LFP10HR.UP inf
+*$if "%altitude%" == "2500" SITE.LFP10HR.LO 0.1
+*$if "%altitude%" == "5000" ATL.LFP10HR.LO 0.1
+/
+
+parameter
+store_exist_pcap_z /
+* in MW
+/
+
+parameter
+store_exist_ecap_z /
+* in MWh
+/
+
+parameter
+store_eff_in /
+* no unit
+LFP10HR 0.95
+/
+
+parameter
+store_eff_out /
+* no unit
+LFP10HR 0.95
+/
+
+parameter
+store_loss_per_hr /
+* no unit
+LFP10HR 0.0
+/
+
+parameter
+store_p_to_e /
+LFP10HR 10.0
+/
+
+parameter
+store_varom /
+* in kUSD per MWh
+LFP10HR 0.0005664
+/
+
+parameter
+store_ecapex2030 /
+* in kUSD per MWh
+*base case
+LFP10HR 261.94
+* low case
+*LFP10HR 163.57
+* high case
+*LFP10HR 303.94
+/
+
+parameter
+store_pcapex2030 /
+* in kUSD per MW / turned off
+LFP10HR 0
+/
+
+parameter
+store_fom /
+* in kUSD per MWh per year
+* base case
+LFP10HR 1.1263
+* low case
+*LFP10HR 0.7034
+* high case
+*LFP10HR 1.3069
+/
+
+parameter
+store_af /
+* no unit
+LFP10HR 0.95
+/
+
+parameter
+DoD /
+* no unit
+LFP10HR 0.8
+/
+
+parameter
+PLT_s /
+* in years
+LFP10HR 13
+/

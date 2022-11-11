@@ -1,0 +1,7 @@
+parameter
+SF_area /
+$if "%altitude%" == "2500" Tower.SITE.x-6800y-2300	669.4036085975602
+$if "%altitude%" == "2500" Parabolic.SITE.x-6800y-2300	669.4036085975602
+$if "%altitude%" == "5000" Tower.ATL.x-6775y-2300	554.2039397904033
+$if "%altitude%" == "5000" Parabolic.ATL.x-6775y-2300	554.2039397904033
+/;

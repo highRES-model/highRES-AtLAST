@@ -1,0 +1,58 @@
+set
+trans /
+line
+/
+
+set
+trans_links /
+$if "%altitude%" == "2500" ATL.SITE.line
+/
+
+parameter
+trans_links_dist /
+$if "%altitude%" == "2500" ATL.SITE.line 43
+/
+
+parameter
+trans_links_cap /
+ATL.SITE.line 0.0
+/
+
+* This parameter is losses per 100 km (%) - Modify
+parameter
+trans_loss /
+* fraction per 100km
+line 0.03
+/
+
+* This parameter is k$ per 100-km
+parameter
+trans_line_capex /
+* in kUSD per 100km per MW (we are using kUSD per 100km)
+line 2359.9
+/
+
+parameter
+trans_sub_capex /
+* in kUSD per 100km per MW (we are using kUSD per 100km)
+line 2359.9
+/
+
+paramter
+trans_fom /
+* in kUSD per 100km per MW per yr (we are using kUSD per 100km per yr)
+line 11.7995
+/
+
+* Not used
+parameter
+trans_varom /
+line 0.0
+/
+
+* Modify
+parameter
+PLT_trans /
+* in years
+line 40
+/

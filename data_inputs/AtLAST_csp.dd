@@ -1,0 +1,223 @@
+set
+CSP /
+Tower
+Parabolic
+/
+
+parameter
+SF_lim_pcap_z /
+* in MW
+$if "%altitude%" == "2500" SITE.Tower.UP inf
+$if "%altitude%" == "2500" SITE.Parabolic.UP inf
+$if "%altitude%" == "5000" ATL.Tower.UP inf
+$if "%altitude%" == "5000" ATL.Parabolic.UP inf
+/
+
+parameter
+SF_exist_cap_r /
+* in MW
+/
+
+parameter
+TES_lim_pcap_z /
+* in MW
+$if "%altitude%" == "2500" SITE.Tower.UP inf
+$if "%altitude%" == "2500" SITE.Parabolic.UP inf
+$if "%altitude%" == "5000" ATL.Tower.UP inf
+$if "%altitude%" == "5000" ATL.Parabolic.UP inf
+/
+
+parameter
+TES_lim_ecap_z /
+* in MWh
+$if "%altitude%" == "2500" SITE.Tower.UP inf
+$if "%altitude%" == "2500" SITE.Parabolic.UP inf
+$if "%altitude%" == "5000" ATL.Tower.UP inf
+$if "%altitude%" == "5000" ATL.Parabolic.UP inf
+/
+
+parameter
+PB_lim_pcap_z /
+* in MW
+$if "%altitude%" == "2500" SITE.Tower.UP inf
+$if "%altitude%" == "2500" SITE.Parabolic.UP inf
+$if "%altitude%" == "5000" ATL.Tower.UP inf
+$if "%altitude%" == "5000" ATL.Parabolic.UP inf
+/
+
+parameter
+SF_exist_pcap_z /
+* in MW
+/
+
+parameter
+TES_exist_pcap_z /
+* in MW
+/
+
+parameter
+TES_exist_ecap_z /
+* in MWh
+/
+
+parameter
+PB_exist_pcap_z /
+* in MW
+/
+
+* Solar Field block
+* Check units
+parameter
+SF_cap2area /
+* in MWt per km2
+Tower 58.87
+Parabolic 61.9
+/
+
+* Thermal storage block
+parameter
+TES_eff_in /
+* no unit
+Tower 0.995
+Parabolic 0.995
+/
+
+parameter
+TES_eff_out /
+* no unit
+Tower 0.995
+Parabolic 0.995
+/
+
+parameter
+TES_loss_per_hr /
+* no unit
+Tower 0.0
+Parabolic 0.0
+/
+
+parameter
+TES_min/
+* no unit
+Tower 0
+Parabolic 0
+/
+
+parameter
+TES_max /
+* no unit
+Tower 1
+Parabolic 1
+/
+
+parameter
+TES_p_to_e /
+Tower 10
+Parabolic 7.5
+/
+
+parameter
+Dt /
+1
+/
+
+* Power block
+parameter
+PB_mingen /
+* no unit
+Tower 0.0
+Parabolic 0.0
+/
+
+parameter
+PB_eff /
+* no unit
+Tower 0.42
+Parabolic 0.42
+/
+
+parameter
+PB_af /
+* no unit
+Tower 1
+Parabolic 1
+/
+
+parameter
+PB_ramp_up /
+* in MW
+Tower inf
+Parabolic inf
+/
+
+parameter
+PB_ramp_down /
+* in MW
+Tower inf
+Parabolic inf
+/
+
+** Cost parameters
+* Power Block
+parameter
+PB_capex2030 /
+* in kUSD per MWe
+Tower 1155.75
+Parabolic 868.98
+/
+
+* Thermal storage block
+parameter
+TES_t_capex2030 /
+* in kUSD per MWt
+Tower 191.1
+Parabolic 276.98
+/
+
+parameter
+TES_e_capex2030 /
+* in kUSD per MWth
+Tower 19.12
+Parabolic 36.93
+/
+
+* Solar Field block
+parameter
+SF_capex2030 /
+* in kUSD per km2
+Tower 147.88e3
+Parabolic 208.557e3
+/
+
+CSP_fom /
+* in kUSD per MW per year
+Tower 57.35
+Parabolic 57.35
+/
+
+CSP_varom /
+* in kUSD per MWh
+Tower 0.00304
+Parabolic 0.00348
+/
+
+parameter
+PLT_SF /
+* in years
+Tower 25
+Parabolic 25
+/
+
+parameter
+PLT_TES /
+* in years
+Tower 25
+Parabolic 25
+/
+
+parameter
+PLT_PB /
+* in years
+Tower 25
+Parabolic 25
+/

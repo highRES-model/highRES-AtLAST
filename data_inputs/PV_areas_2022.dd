@@ -1,0 +1,9 @@
+parameter
+area /
+$ifthen "%PV%" == ON
+* 2500m
+$if "%altitude%" == "2500" PV.SITE.x-6800y-2300	669.495097442724
+* 5000m
+$if "%altitude%" == "5000" PV.ATL.x-6775y-2300	554.2039397904033
+$endIf
+/

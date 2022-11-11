@@ -1,0 +1,20 @@
+# This CITATION.cff file was generated with cffinit.
+# Visit https://bit.ly/cffinit to generate yours today!
+
+cff-version: 1.2.0
+title: >-
+  Power system optimization model for AtLAST
+  telescope
+message: >-
+  If you use this software, please cite it using the
+  metadata from this file.
+type: software
+authors:
+  - given-names: Guillermo
+    family-names: Valenzuela
+    email: guillermo.valenzuela.v@gmail.com
+    affiliation: University of Oslo
+repository-code: 'https://github.com/highRES-model/highRES-AtLAST'
+license: GPL-3.0
+version: 1.0.0
+date-released: '2022-11-11'

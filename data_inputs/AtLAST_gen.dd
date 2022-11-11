@@ -1,0 +1,113 @@
+set
+g /
+Diesel
+PV
+/
+
+set
+non_vre /
+Diesel
+/
+
+set
+vre /
+PV
+/
+
+parameter
+gen_lim_pcap_z /
+* in MW
+$ifThen "%Diesel%" == ON
+$if "%altitude%" == "2500" SITE.Diesel.UP inf
+$if "%altitude%" == "5000" ATL.Diesel.UP inf
+$endIf
+/
+
+parameter
+gen_exist_pcap_z /
+* in MW
+/
+
+parameter
+gen_emisfac /
+* in tCO2 per MWh
+Diesel 0.86052
+PV 0.0
+/
+
+parameter
+gen_maxramp /
+* in MW per min
+Diesel 87.0
+/
+
+parameter
+gen_unitsize /
+Diesel 50.0
+/
+
+parameter
+gen_capex2030 /
+* in kUSD per MW
+Diesel 495.14
+* base case
+PV 523.28
+* low case
+*PV 345.07
+* high case
+*PV 928.22
+/
+
+parameter
+gen_varom /
+* in kUSD per MWh
+Diesel 0.0235
+/
+
+parameter
+gen_fom /
+* in kUSD per MW per year
+Diesel 9.90
+* base case
+PV 5.23
+* low case
+*PV 3.45
+* high case
+*PV 9.28
+/
+
+parameter
+gen_fuelcost2030 /
+* in kUSD per MWh
+* base case
+Diesel 0.1622052
+* high case
+*Diesel 0.3295404
+/
+
+parameter
+gen_cap2area /
+* in MW per km2
+PV 30.0
+/
+
+parameter
+gen_af /
+* no unit
+Diesel 0.95
+/
+
+parameter
+gen_mingen /
+* no unit
+Diesel 0
+PV 0
+/
+
+* Extra parameters
+parameter
+PLT_g /
+* in years
+Diesel 25
+PV 25
+/;
