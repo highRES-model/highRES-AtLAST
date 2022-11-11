@@ -14,7 +14,11 @@ authors:
     family-names: Valenzuela
     email: guillermo.valenzuela.v@gmail.com
     affiliation: University of Oslo
+identifiers:
+  - type: doi
+    value: 10.5281/zenodo.7313731
 repository-code: 'https://github.com/highRES-model/highRES-AtLAST'
 license: GPL-3.0
+commit: 2dc70f0a494b2aa33df98fb010f44f71ba914c69
 version: 1.0.0
 date-released: '2022-11-11'
