@@ -5,11 +5,13 @@ line
 
 set
 trans_links /
+$if "%altitude%" == "2500" SPA.SITE.line
 $if "%altitude%" == "2500" ATL.SITE.line
 /
 
 parameter
 trans_links_dist /
+$if "%altitude%" == "2500" SPA.SITE.line 15.8
 $if "%altitude%" == "2500" ATL.SITE.line 43
 /
 

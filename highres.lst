@@ -1,0 +1,371 @@
+GAMS 43.4.1  3da5975b Jun 22, 2023          WEX-WEI x86 64bit/MS Windows - 07/04/23 15:21:10 Page 1
+G e n e r a l   A l g e b r a i c   M o d e l i n g   S y s t e m
+C o m p i l a t i o n
+
+
+   1  ******************************************
+   2  * highres main script
+   3  ******************************************
+   4   
+   5  * $ontext
+   6  option profile=1
+   7  * $offtext
+   8  option limrow=0, limcol=0, solprint=OFF
+   9  option decimals = 4
+GAMS 43.4.1  3da5975b Jun 22, 2023          WEX-WEI x86 64bit/MS Windows - 07/04/23 15:21:10 Page 2
+G e n e r a l   A l g e b r a i c   M o d e l i n g   S y s t e m
+Include File Summary
+
+
+   SEQ   GLOBAL TYPE      PARENT   LOCAL  FILENAME
+
+     1        1 INPUT          0       0  C:\Users\39366\Documents\GitHub\highRES-AtLAST\highres.gms
+     2      138 INCLUDE        1     144  .C:\Users\39366\Documents\GitHub\highRES-AtLAST\highres_data_input.gms
+     3      148 BATINCLUDE     2      10  ..C:\Users\39366\Documents\GitHub\highRES-AtLAST\data_inputs\AtLAST_regions.dd
+     4      159 BATINCLUDE     2      14  ..C:\Users\39366\Documents\GitHub\highRES-AtLAST\data_inputs\zones.dd
+     5      167 INCLUDE        2      19  ..C:\Users\39366\Documents\GitHub\highRES-AtLAST\data_inputs\2030_temporal.dd
+     6    17761 INCLUDE        2      81  ..C:\Users\39366\Documents\GitHub\highRES-AtLAST\data_inputs\AtLAST_gen.dd
+     7    17876 INCLUDE        2      82  ..C:\Users\39366\Documents\GitHub\highRES-AtLAST\data_inputs\trans.dd
+     8    17942 INCLUDE        2      88  ..C:\Users\39366\Documents\GitHub\highRES-AtLAST\data_inputs\PV_areas_2022.dd
+     9    17953 INCLUDE        2      90  ..C:\Users\39366\Documents\GitHub\highRES-AtLAST\data_inputs\AtLAST_demand_2030.dd
+    10    26722 INCLUDE        2      96  ..C:\Users\39366\Documents\GitHub\highRES-AtLAST\data_inputs\cf_pv_2020.dd
+    11    79326 INCLUDE        1     174  .C:\Users\39366\Documents\GitHub\highRES-AtLAST\highres_storage_setup.gms
+    12    79381 INCLUDE       11      55  ..C:\Users\39366\Documents\GitHub\highRES-AtLAST\data_inputs\AtLAST_store.dd
+    13    80338 INCLUDE        1     978  .C:\Users\39366\Documents\GitHub\highRES-AtLAST\highres_results.gms
+
+
+COMPILATION TIME     =        0.078 SECONDS      7 MB  43.4.1 3da5975b WEX-WEI
+GAMS 43.4.1  3da5975b Jun 22, 2023          WEX-WEI x86 64bit/MS Windows - 07/04/23 15:21:10 Page 3
+G e n e r a l   A l g e b r a i c   M o d e l i n g   S y s t e m
+E x e c u t i o n
+
+
+----      8 Other                    0.000     0.000 SECS      7 MB 
+----      9 Other                    0.000     0.000 SECS      7 MB 
+----    117 Assignment MWtoGW        0.000     0.000 SECS      7 MB      1
+----    129 Assignment NIR           0.000     0.000 SECS      7 MB      1
+----    130 Assignment f             0.000     0.000 SECS      7 MB      1
+----    133 Assignment IR            0.000     0.000 SECS      7 MB      1
+----  79289 Assignment gen_capex     0.000     0.000 SECS      7 MB      2
+----  79290 Assignment gen_fuelcost    0.000     0.000 SECS      7 MB      1
+----  79294 Assignment CRF_g         0.000     0.000 SECS      7 MB      2
+----  79295 Assignment CRF_trans     0.000     0.000 SECS      7 MB      1
+----  79297 Assignment gen_capex     0.000     0.000 SECS      7 MB      2
+----  79298 Assignment trans_line_capex    0.000     0.000 SECS      7 MB      1
+----  79494 Assignment store_pcapex    0.000     0.000 SECS      7 MB      1
+----  79495 Assignment store_ecapex    0.000     0.000 SECS      7 MB      1
+----  79500 Assignment CRF_s         0.000     0.000 SECS      7 MB      1
+----  79501 Assignment store_pcapex    0.000     0.000 SECS      7 MB      1
+----  79502 Assignment store_ecapex    0.000     0.000 SECS      7 MB      1
+----  79542 Assignment var_exist_store_pcap_z    0.000     0.000 SECS      7 MB      0
+----  79543 Assignment var_exist_store_pcap_z    0.000     0.000 SECS      7 MB      0
+----  79545 Assignment var_exist_store_pcap_z    0.000     0.000 SECS      7 MB      0
+----  79547 Assignment var_exist_store_pcap_z    0.000     0.000 SECS      7 MB      3
+----  79551 Assignment var_exist_store_ecap_z    0.000     0.000 SECS      7 MB      0
+----  79552 Assignment var_exist_store_ecap_z    0.000     0.000 SECS      7 MB      0
+----  79554 Assignment var_exist_store_ecap_z    0.000     0.000 SECS      7 MB      0
+----  79556 Assignment var_exist_store_ecap_z    0.000     0.000 SECS      7 MB      3
+----  79560 Assignment var_tot_store_pcap_z    0.000     0.000 SECS      7 MB      0
+----  79561 Assignment var_tot_store_pcap_z    0.000     0.000 SECS      7 MB      0
+----  79562 Assignment var_tot_store_pcap_z    0.000     0.000 SECS      7 MB      0
+----  79566 Assignment var_tot_store_ecap_z    0.000     0.000 SECS      7 MB      0
+----  79567 Assignment var_tot_store_ecap_z    0.000     0.000 SECS      7 MB      0
+----  79568 Assignment var_tot_store_ecap_z    0.000     0.000 SECS      7 MB      0
+----  79582 Assignment s_lim         0.000     0.000 SECS      7 MB      1
+----  79647 Assignment hfirst        0.000     0.000 SECS      7 MB      1
+----  79648 Assignment hlast         0.000     0.000 SECS      7 MB      1
+----  79725 Assignment demand        0.000     0.000 SECS      7 MB   8760
+----  79726 Assignment gen_cap2area    0.000     0.000 SECS      7 MB      1
+----  79727 Assignment trans_links_cap    0.000     0.000 SECS      7 MB      1
+----  79728 Assignment gen_unitsize    0.000     0.000 SECS      7 MB      1
+----  79729 Assignment gen_maxramp    0.000     0.000 SECS      7 MB      1
+----  79736 Clear      exist_vre_cap_r    0.000     0.000 SECS      7 MB 
+----  79746 Assignment gen_exist_cap    0.000     0.000 SECS      7 MB      0
+----  79753 Assignment vre_lim       0.000     0.000 SECS      7 MB      1
+----  79758 Assignment gen_lim       0.000     0.000 SECS      7 MB      1
+----  79759 Assignment gen_lim       0.000     0.000 SECS      7 MB      2
+----  79775 Assignment gen_lin       0.000     0.000 SECS      7 MB      3
+----  79778 Assignment gen_mingen_lin    0.000     0.000 SECS      7 MB      1
+----  79786 Assignment ramp_on       0.000     0.000 SECS      7 MB      0
+----  79788 Assignment mingen_on     0.000     0.000 SECS      7 MB      0
+----  79790 Assignment ramp_and_mingen    0.000     0.000 SECS      7 MB      0
+----  79794 Assignment area          0.000     0.000 SECS      7 MB      1
+----  79798 Assignment area          0.000     0.000 SECS      7 MB      1
+----  79799 Assignment area          0.000     0.000 SECS      7 MB      1
+----  79803 Assignment gen_varom     0.000     0.000 SECS      7 MB      1
+----  79815 Assignment gen_varom     0.000     0.000 SECS      7 MB      2
+----  79821 IF-ELSE                  0.000     0.000 SECS      7 MB 
+----  79900 Assignment trans_links    0.000     0.000 SECS      7 MB      4
+----  79902 Assignment trans_links_cap    0.000     0.000 SECS      7 MB      1
+----  79904 Assignment trans_links_dist    0.000     0.000 SECS      7 MB      2
+----  79911 Assignment trans_links_dist_bidir    0.000     0.000 SECS      7 MB      2
+----  79912 Assignment trans_links_dist_bidir    0.000     0.000 SECS      7 MB      4
+----  79920 Assignment var_trans_pcap    0.000     0.000 SECS      7 MB      4
+----  79928 Assignment var_exist_pcap_z    0.000     0.000 SECS      7 MB      0
+----  79931 Assignment var_exist_pcap_z    0.000     0.000 SECS      7 MB      0
+----  79932 Assignment var_exist_pcap_z    0.000     0.000 SECS      7 MB      0
+----  79934 Assignment var_exist_pcap_z    0.000     0.000 SECS      7 MB      6
+----  79937 Assignment var_tot_pcap_z    0.000     0.000 SECS      7 MB      0
+----  79938 Assignment var_tot_pcap_z    0.000     0.000 SECS      7 MB      0
+----  79939 Assignment var_tot_pcap_z    0.000     0.000 SECS      7 MB      0
+----  80216 Other                    0.000     0.000 SECS      7 MB 
+----  80217 Other                    0.000     0.000 SECS      7 MB 
+----  80260 Assignment Dispatch      0.000     0.000 SECS      7 MB     39
+GAMS 43.4.1  3da5975b Jun 22, 2023          WEX-WEI x86 64bit/MS Windows - 07/04/23 15:21:10 Page 4
+G e n e r a l   A l g e b r a i c   M o d e l i n g   S y s t e m
+Model Analysis      SOLVE Dispatch Using MIP From line 80295
+
+
+----  80295 Solve Init Dispatch      0.000     0.000 SECS      7 MB 
+----  79652 Equation   eq_store_balance    0.000     0.000 SECS     14 MB   8760
+----  79672 Equation   eq_store_level    0.015     0.015 SECS     16 MB   8760
+----  79699 Equation   eq_store_gen_max1    0.000     0.015 SECS     17 MB   8760
+----  79681 Equation   eq_store_charge_max    0.000     0.015 SECS     18 MB   8760
+----  79677 Equation   eq_store_ecap_max    0.000     0.015 SECS     18 MB      1
+----  79608 Equation   eq_new_store_pcap    0.000     0.015 SECS     18 MB      1
+----  79610 Equation   eq_exist_store_pcap    0.000     0.015 SECS     18 MB      1
+----  79612 Equation   eq_tot_store_pcap_z    0.000     0.015 SECS     18 MB      3
+----  79614 Equation   eq_tot_store_pcap    0.000     0.015 SECS     18 MB      1
+----  79618 Equation   eq_new_store_ecap    0.000     0.015 SECS     18 MB      1
+----  79620 Equation   eq_exist_store_ecap    0.000     0.015 SECS     18 MB      1
+----  79622 Equation   eq_tot_store_ecap_z    0.000     0.015 SECS     18 MB      3
+----  79624 Equation   eq_tot_store_ecap    0.000     0.015 SECS     18 MB      1
+----  79691 Equation   eq_DoD_min    0.016     0.031 SECS     20 MB   8760
+----  80015 Equation   eq_obj        0.031     0.062 SECS     24 MB      1
+----  80035 Equation   eq_costs_gen_capex    0.000     0.062 SECS     24 MB      3
+----  80037 Equation   eq_costs_gen_fom    0.000     0.062 SECS     24 MB      3
+----  80039 Equation   eq_costs_gen_varom    0.000     0.062 SECS     26 MB      3
+----  80045 Equation   eq_costs_store_capex    0.000     0.062 SECS     26 MB      3
+----  80047 Equation   eq_costs_store_fom    0.000     0.062 SECS     26 MB      3
+----  80049 Equation   eq_costs_store_varom    0.000     0.062 SECS     27 MB      3
+----  80059 Equation   eq_costs_trans_capex    0.000     0.062 SECS     27 MB      3
+----  80068 Equation   eq_costs_trans_fom    0.000     0.062 SECS     27 MB      3
+----  80077 Equation   eq_elc_balance    0.063     0.125 SECS     43 MB  26280
+----  80113 Equation   eq_new_pcap    0.000     0.125 SECS     43 MB      2
+----  80115 Equation   eq_exist_pcap    0.000     0.125 SECS     43 MB      2
+----  80119 Equation   eq_tot_pcap    0.000     0.125 SECS     43 MB      2
+----  80117 Equation   eq_tot_pcap_z    0.000     0.125 SECS     43 MB      6
+----  80151 Equation   eq_gen_max    0.000     0.125 SECS     43 MB   8760
+----  80155 Equation   eq_gen_min    0.000     0.125 SECS     43 MB      0
+----  80160 Equation   eq_ramp_up    0.000     0.125 SECS     43 MB      0
+----  80162 Equation   eq_ramp_down    0.000     0.125 SECS     43 MB      0
+----  80136 Equation   eq_new_vre_pcap_z    0.000     0.125 SECS     43 MB      3
+----  80138 Equation   eq_exist_vre_pcap_z    0.000     0.125 SECS     43 MB      3
+----  80132 Equation   eq_gen_vre    0.015     0.140 SECS     45 MB  26280
+----  80127 Equation   eq_gen_vre_r    0.016     0.156 SECS     47 MB   8760
+----  80142 Equation   eq_area_max    0.000     0.156 SECS     47 MB      1
+----  80175 Equation   eq_trans_flow    0.031     0.187 SECS     59 MB  35040
+----  80179 Equation   eq_trans_bidirect    0.000     0.187 SECS     59 MB      4
+GAMS 43.4.1  3da5975b Jun 22, 2023          WEX-WEI x86 64bit/MS Windows - 07/04/23 15:21:10 Page 5
+G e n e r a l   A l g e b r a i c   M o d e l i n g   S y s t e m
+Range Statistics    SOLVE Dispatch Using MIP From line 80295
+
+
+RANGE STATISTICS (ABSOLUTE NON-ZERO FINITE VALUES)
+
+RHS       [min, max] : [ 6.520E-01, 2.008E+04] - Zero values observed as well
+Bound     [min, max] : [ 5.000E+01, 5.000E+01] - Zero values observed as well
+Matrix    [min, max] : [ 1.000E-06, 4.048E+01] - Zero values observed as well
+
+GAMS 43.4.1  3da5975b Jun 22, 2023          WEX-WEI x86 64bit/MS Windows - 07/04/23 15:21:10 Page 6
+G e n e r a l   A l g e b r a i c   M o d e l i n g   S y s t e m
+Model Statistics    SOLVE Dispatch Using MIP From line 80295
+
+
+MODEL STATISTICS
+
+BLOCKS OF EQUATIONS          39     SINGLE EQUATIONS      148,981
+BLOCKS OF VARIABLES          36     SINGLE VARIABLES      105,199
+NON ZERO ELEMENTS       420,654
+
+
+----  80295 Solve Fini Dispatch      0.110     0.297 SECS     60 MB  420654
+GENERATION TIME      =        0.297 SECONDS     60 MB  43.4.1 3da5975b WEX-WEI
+----  80295 Solver     Dispatch      1.923     2.218 SECS     60 MB 
+GAMS 43.4.1  3da5975b Jun 22, 2023          WEX-WEI x86 64bit/MS Windows - 07/04/23 15:21:10 Page 7
+G e n e r a l   A l g e b r a i c   M o d e l i n g   S y s t e m
+Solution Report     SOLVE Dispatch Using MIP From line 80295
+
+
+               S O L V E      S U M M A R Y
+
+     MODEL   Dispatch            OBJECTIVE  costs
+     TYPE    MIP                 DIRECTION  MINIMIZE
+     SOLVER  CPLEX               FROM LINE  80295
+
+**** SOLVER STATUS     1 Normal Completion
+**** MODEL STATUS      1 Optimal
+**** OBJECTIVE VALUE              881.9212
+
+ RESOURCE USAGE, LIMIT          1.703 10000000000.000
+ ITERATION COUNT, LIMIT        37    2147483647
+--- GAMS/CPLEX Link licensed for continuous and discrete problems.
+
+Reading parameter(s) from "C:\Users\39366\Documents\GitHub\highRES-AtLAST\cplex.opt"
+>> 
+>> 
+>>  cutpass=-1
+>> 
+>>  solvefinal=0
+>>  epgap=0.01
+>> 
+>>  barorder=0
+>>  baralg=0
+>>  solutiontype=2
+>>  barepcomp=1E-7
+>>  subalg=4
+>>  numericalemphasis=0
+>> 
+>>  heurfreq=1
+>> 
+>>  lpmethod=4
+>>  threads=5
+>>  startalg=4
+>> 
+>>  parallelmode=-1
+>>  tilim=720000
+>>  mipdisplay=5
+>>  names yes
+>>  scaind=1
+>>  epmrk=0.9999
+>>  clonelog=1
+>>  mipkappastats=1
+>>  perind=1
+>> 
+>> 
+>> 
+Finished reading from "C:\Users\39366\Documents\GitHub\highRES-AtLAST\cplex.opt"
+
+--- GMO setup time: 0.00s
+--- Space for names approximately 9.41 Mb
+--- Use option 'names no' to turn use of names off
+--- GMO memory 48.42 Mb (peak 49.22 Mb)
+--- Dictionary memory 0.00 Mb
+--- Cplex 22.1.1.0 link memory 3.71 Mb (peak 19.69 Mb)
+--- Starting Cplex
+
+
+--- LP status (1): optimal.
+--- Cplex Time: 1.64sec (det. 1821.10 ticks)
+
+
+Optimal solution found
+Objective:          881.921246
+
+Solution Quality Statistics:
+                                   unscaled                scaled
+                               max         sum         max         sum
+primal infeasibility        5.079e-10   2.138e-09   5.079e-10   2.138e-09
+dual infeasibility          7.479e-10   5.057e-06   7.479e-10   5.057e-06
+primal residual             1.386e-12   9.476e-12   1.386e-12   9.476e-12
+dual residual               3.687e-09   1.495e-05   3.687e-09   1.495e-05
+primal solution vector      4.616e+02   1.086e+05   4.616e+02   1.086e+05
+dual solution vector        1.637e+02   5.904e+03   1.637e+02   5.904e+03
+slacks                      2.008e+04   1.890e+06   2.008e+04   1.890e+06
+reduced costs               1.625e+02   1.822e+03   1.625e+02   1.822e+03
+comp. slackness viol.       1.773e-09   1.687e-05
+
+
+
+
+**** REPORT SUMMARY :        0     NONOPT
+                             0 INFEASIBLE
+                             0  UNBOUNDED
+----  80295 Solve Read Dispatch      0.063     2.281 SECS     60 MB 
+GAMS 43.4.1  3da5975b Jun 22, 2023          WEX-WEI x86 64bit/MS Windows - 07/04/23 15:21:10 Page 8
+G e n e r a l   A l g e b r a i c   M o d e l i n g   S y s t e m
+E x e c u t i o n
+
+
+----  80301 Assignment trans_f       0.016     2.297 SECS     60 MB   2064
+----  80305 Assignment max_bidir_trans    0.000     2.297 SECS     60 MB      1
+----  80313 Assignment now           0.000     2.297 SECS     60 MB      1
+----  80314 Assignment year          0.000     2.297 SECS     60 MB      1
+----  80315 Assignment month         0.000     2.297 SECS     60 MB      1
+----  80316 Assignment day           0.000     2.297 SECS     60 MB      1
+----  80317 Assignment hour          0.000     2.297 SECS     60 MB      1
+----  80318 Assignment minute        0.000     2.297 SECS     60 MB      1
+----  80323 Assignment cplex_absgap    0.000     2.297 SECS     60 MB      1
+----  80324 Assignment cplex_relgap    0.000     2.297 SECS     60 MB      1
+----  80327 Assignment fname         0.000     2.297 SECS     60 MB      0
+----  80328 Put                      0.000     2.297 SECS     60 MB 
+----  80540 Assignment o_variableC    0.031     2.328 SECS     60 MB      1
+----  80547 Assignment o_nonVREVarC    0.000     2.328 SECS     60 MB      1
+----  80550 Assignment o_VREVarC     0.000     2.328 SECS     60 MB      1
+----  80553 Assignment o_transVarC    0.000     2.328 SECS     60 MB      1
+----  80558 Assignment o_capitalC    0.000     2.328 SECS     60 MB      1
+----  80566 Assignment o_nonVRECapC    0.000     2.328 SECS     60 MB      1
+----  80571 Assignment o_VRECapC     0.000     2.328 SECS     60 MB      1
+----  80576 Assignment o_transCapc    0.000     2.328 SECS     60 MB      1
+----  80585 Assignment o_variablestoreC    0.000     2.328 SECS     60 MB      1
+----  80589 Assignment o_capitalstoreC    0.000     2.328 SECS     60 MB      1
+----  80595 Assignment o_capitalC_tot    0.000     2.328 SECS     60 MB      1
+----  80599 Assignment o_variableC_tot    0.000     2.328 SECS     60 MB      1
+----  80612 Assignment o_emissions    0.000     2.328 SECS     60 MB   8760
+----  80615 Assignment o_emissions_all    0.000     2.328 SECS     60 MB      1
+----  80625 Assignment o_trans_cap_sum    0.000     2.328 SECS     60 MB      1
+----  80658 Assignment o_non_vre_gen_tot    0.015     2.343 SECS     60 MB      1
+----  80661 Assignment o_non_vre_gen_out    0.000     2.343 SECS     60 MB   8760
+----  80664 Assignment o_vre_gen_out    0.000     2.343 SECS     60 MB   4320
+----  80667 Assignment o_vre_gen_tot    0.000     2.343 SECS     60 MB      1
+----  80671 Assignment o_gen         0.000     2.343 SECS     60 MB  13080
+----  80674 Assignment o_gen_tot     0.000     2.343 SECS     60 MB      2
+----  80706 Assignment vre_curtail    0.032     2.375 SECS     60 MB   8760
+----  80709 Assignment o_curtail     0.000     2.375 SECS     60 MB      1
+----  80713 Assignment o_curtail_frac_vregen    0.000     2.375 SECS     60 MB      1
+----  80722 Assignment o_eprice      0.000     2.375 SECS     60 MB      0
+----  80729 Assignment o_grossRet_non_vre    0.000     2.375 SECS     60 MB      1
+----  80734 Assignment o_grossRet_vre    0.015     2.390 SECS     60 MB      1
+----  80739 Assignment o_grossRet_store    0.000     2.390 SECS     60 MB      1
+----  80744 Assignment o_gen_costs    0.016     2.406 SECS     60 MB      1
+----  80751 Assignment o_vre_cap_z_sum    0.000     2.406 SECS     60 MB      1
+----  80755 Assignment o_vre_cap_r_sum    0.000     2.406 SECS     60 MB      1
+----  80760 Assignment o_nvre_cap_z_sum    0.000     2.406 SECS     60 MB      1
+----  80765 Assignment o_vre_gen_sum_r    0.000     2.406 SECS     60 MB      1
+----  80770 Assignment o_vre_gen_sum_z    0.000     2.406 SECS     60 MB      1
+----  80774 Assignment o_vre_gen_sum_r_z    0.000     2.406 SECS     60 MB      1
+----  80778 Assignment o_vre_gen_sum_r_zone    0.000     2.406 SECS     60 MB   4320
+----  80784 Assignment o_vre_gen_sum_h    0.016     2.422 SECS     60 MB   4320
+----  80788 Assignment o_gen_sum_zone    0.000     2.422 SECS     60 MB      1
+----  80793 Assignment o_gen_sum_z    0.000     2.422 SECS     60 MB      1
+----  80797 Assignment o_gen_sum_h    0.000     2.422 SECS     60 MB   8760
+----  80801 Assignment o_store_gen_sum_h    0.015     2.437 SECS     60 MB   8760
+----  80812 Assignment o_store_gen_sum    0.000     2.437 SECS     60 MB      1
+----  80817 Assignment o_store_gen_all    0.000     2.437 SECS     60 MB      1
+----  80823 Assignment o_nvre_gen_sum_z    0.000     2.437 SECS     60 MB      1
+----  80827 Assignment o_vre_gen_sum_r    0.000     2.437 SECS     60 MB      1
+----  80832 Assignment o_Residual_D    0.000     2.437 SECS     60 MB  13080
+----  80837 Assignment dem_tot       0.000     2.437 SECS     60 MB      1
+----  80841 Assignment o_LCOE        0.000     2.437 SECS     60 MB      1
+----  80889 Unload                   0.094     2.531 SECS     60 MB 
+
+**** REPORT FILE SUMMARY
+
+fname C:\Users\39366\Documents\GitHub\highRES-AtLAST\test_log
+
+
+EXECUTION TIME       =        2.531 SECONDS     60 MB  43.4.1 3da5975b WEX-WEI
+
+
+USER: Small MUD - 5 User License                     S221213|0002AO-WIN
+      University of Oslo, Institute for Technology Systems      DC15723
+      License for teaching and research at degree granting institutions
+
+
+**** FILE SUMMARY
+
+Input      C:\Users\39366\Documents\GitHub\highRES-AtLAST\highres.gms
+Output     C:\Users\39366\Documents\GitHub\highRES-AtLAST\highres.lst
+----  80889 GAMS Fini                0.000     0.000 SECS     60 MB 
+ 
+---- Profile Summary (176 records processed)
+     1.923   0.060GB     80295 Solver     Dispatch
+     0.110   0.060GB     80295 Solve Fini Dispatch (420654)
+     0.094   0.060GB     80889 Unload     
+     0.063   0.060GB     80295 Solve Read Dispatch
+     0.063   0.043GB     80077 Equation   eq_elc_balance (26280)
+     0.032   0.060GB     80706 Assignment vre_curtail (8760)
+     0.031   0.024GB     80015 Equation   eq_obj (1)
+     0.031   0.059GB     80175 Equation   eq_trans_flow (35040)
+     0.031   0.060GB     80540 Assignment o_variableC (1)
+     0.016   0.060GB     80301 Assignment trans_f (2064)

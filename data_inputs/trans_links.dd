@@ -1,1 +1,2 @@
 $if "%altitude%" == "2500" ATL.SITE.line
+$if "%altitude%" == "2500" SPA.SITE.line

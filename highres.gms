@@ -68,15 +68,15 @@ $setglobal gdx2sql "OFF"
 $setglobal cplex_opt_file "1"
 
 * Scenarios selection
-$setglobal scenario "c1i"
+$setglobal scenario ""
 $setglobal NOSTORE "OFF"
 
 $ifThen "%scenario%" == ""
-$setglobal PV "OFF"
-$setglobal Diesel "OFF"
-$setglobal storage "OFF"
+$setglobal PV "ON"
+$setglobal Diesel "ON"
+$setglobal storage "ON"
 $setglobal hydrogen "OFF"
-$setglobal CSP "ON"
+$setglobal CSP "OFF"
 $setglobal altitude "2500"
 
 $else

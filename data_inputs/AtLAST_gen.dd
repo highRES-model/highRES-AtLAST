@@ -18,6 +18,7 @@ parameter
 gen_lim_pcap_z /
 * in MW
 $ifThen "%Diesel%" == ON
+*$if "%altitude%" == "2500" SPA.Diesel.UP inf
 $if "%altitude%" == "2500" SITE.Diesel.UP inf
 $if "%altitude%" == "5000" ATL.Diesel.UP inf
 $endIf

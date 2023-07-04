@@ -1,0 +1,227 @@
+
+--- Job highres.gms Start 07/04/23 15:21:10 43.4.1 3da5975b WEX-WEI x86 64bit/MS Windows
+--- Applying:
+    C:\GAMS\43\gmsprmNT.txt
+--- GAMS Parameters defined
+    Input C:\Users\39366\Documents\GitHub\highRES-AtLAST\highres.gms
+    PageSize 0
+    ScrDir C:\Users\39366\Documents\GitHub\highRES-AtLAST\225a\
+    SysDir C:\GAMS\43\
+    LogOption 3
+    ErrMsg 1
+    ErrorLog 99
+    IDE 1
+    LstTitleLeftAligned 1
+Licensee: Small MUD - 5 User License                     S221213|0002AO-WIN
+          University of Oslo, Institute for Technology Systems      DC15723
+          C:\Users\39366\Documents\GAMS\gamslice.txt
+          License Admin: Arild Hemstad, arild.hemstad@its.uio.no           
+Processor information: 1 socket(s), 4 core(s), and 8 thread(s) available
+GAMS 43.4.1   Copyright (C) 1987-2023 GAMS Development. All rights reserved
+--- Starting compilation
+--- highres.gms(144) 2 Mb
+--- . highres_data_input.gms(10) 3 Mb
+--- .. AtLAST_regions.dd(7) 3 Mb
+--- . highres_data_input.gms(14) 3 Mb
+--- .. zones.dd(3) 3 Mb
+--- . highres_data_input.gms(19) 3 Mb
+--- .. 2030_temporal.dd(17532) 4 Mb
+--- . highres_data_input.gms(81) 4 Mb
+--- .. AtLAST_gen.dd(114) 4 Mb
+--- . highres_data_input.gms(82) 4 Mb
+--- .. trans.dd(60) 4 Mb
+--- . highres_data_input.gms(88) 4 Mb
+--- .. PV_areas_2022.dd(9) 4 Mb
+--- . highres_data_input.gms(90) 4 Mb
+--- .. AtLAST_demand_2030.dd(8763) 4 Mb
+--- . highres_data_input.gms(96) 4 Mb
+--- .. cf_pv_2020.dd(52560) 6 Mb
+--- . highres_data_input.gms(119) 6 Mb
+--- highres.gms(174) 6 Mb
+--- . highres_storage_setup.gms(55) 6 Mb
+--- .. AtLAST_store.dd(108) 6 Mb
+--- . highres_storage_setup.gms(287) 6 Mb
+--- highres.gms(861) 6 Mb
+--- $echo File C:\Users\39366\Documents\GitHub\highRES-AtLAST\cplex.opt
+--- highres.gms(978) 7 Mb
+--- . highres_results.gms(608) 7 Mb
+--- highres.gms(986) 7 Mb
+--- Starting execution: elapsed 0:00:00.086
+--- highres.gms(80260) 7 Mb
+--- Generating MIP model Dispatch
+--- highres.gms(80295) 60 Mb
+---   148,981 rows  105,199 columns  420,654 non-zeroes
+--- Range statistics (absolute non-zero finite values)
+--- RHS       [min, max] : [ 6.520E-01, 2.008E+04] - Zero values observed as well
+--- Bound     [min, max] : [ 5.000E+01, 5.000E+01] - Zero values observed as well
+--- Matrix    [min, max] : [ 1.000E-06, 4.048E+01] - Zero values observed as well
+--- Executing CPLEX (Solvelink=2): elapsed 0:00:00.383
+
+IBM ILOG CPLEX   43.4.1 3da5975b Jun 22, 2023          WEI x86 64bit/MS Window
+
+--- GAMS/CPLEX Link licensed for continuous and discrete problems.
+
+Reading parameter(s) from "C:\Users\39366\Documents\GitHub\highRES-AtLAST\cplex.opt"
+>> 
+>> 
+>>  cutpass=-1
+>> 
+>>  solvefinal=0
+>>  epgap=0.01
+>> 
+>>  barorder=0
+>>  baralg=0
+>>  solutiontype=2
+>>  barepcomp=1E-7
+>>  subalg=4
+>>  numericalemphasis=0
+>> 
+>>  heurfreq=1
+>> 
+>>  lpmethod=4
+>>  threads=5
+>>  startalg=4
+>> 
+>>  parallelmode=-1
+>>  tilim=720000
+>>  mipdisplay=5
+>>  names yes
+>>  scaind=1
+>>  epmrk=0.9999
+>>  clonelog=1
+>>  mipkappastats=1
+>>  perind=1
+>> 
+>> 
+>> 
+Finished reading from "C:\Users\39366\Documents\GitHub\highRES-AtLAST\cplex.opt"
+
+--- GMO setup time: 0.00s
+--- Space for names approximately 9.41 Mb
+--- Use option 'names no' to turn use of names off
+--- GMO memory 48.42 Mb (peak 49.22 Mb)
+--- Dictionary memory 0.00 Mb
+--- Cplex 22.1.1.0 link memory 3.71 Mb (peak 19.69 Mb)
+--- Starting Cplex
+
+Version identifier: 22.1.1.0 | 2022-11-27 | 9160aff4d
+CPXPARAM_Advance                                 0
+CPXPARAM_Simplex_Perturbation_Indicator          1
+CPXPARAM_Read_Scale                              1
+CPXPARAM_LPMethod                                4
+CPXPARAM_Threads                                 5
+CPXPARAM_Parallel                                -1
+CPXPARAM_Output_CloneLog                         1
+CPXPARAM_SolutionType                            2
+CPXPARAM_MIP_Display                             5
+CPXPARAM_MIP_Strategy_StartAlgorithm             4
+CPXPARAM_MIP_Strategy_SubAlgorithm               4
+CPXPARAM_MIP_Pool_Capacity                       0
+CPXPARAM_MIP_Strategy_KappaStats                 1
+CPXPARAM_MIP_Strategy_HeuristicFreq              1
+CPXPARAM_MIP_Limits_CutPasses                    -1
+CPXPARAM_Simplex_Tolerances_Markowitz            0.99990000000000001
+CPXPARAM_TimeLimit                               720000
+CPXPARAM_MIP_Tolerances_AbsMIPGap                0
+CPXPARAM_MIP_Tolerances_MIPGap                   0.01
+CPXPARAM_Barrier_ConvergeTol                     9.9999999999999995e-08
+Tried aggregator 1 time.
+LP Presolve eliminated 61495 rows and 26471 columns.
+Aggregator did 21845 substitutions.
+Reduced LP has 65640 rows, 56883 columns, and 179400 nonzeros.
+Presolve time = 0.45 sec. (813.36 ticks)
+Parallel mode: using up to 5 threads for barrier.
+
+***NOTE: Found 3 dense columns.
+
+Number of nonzeros in lower triangle of A*A' = 109440
+Using Approximate Minimum Degree ordering
+Total time for automatic ordering = 0.02 sec. (9.72 ticks)
+Summary statistics for Cholesky factor:
+  Threads                   = 5
+  Rows in Factor            = 65643
+  Integer space required    = 125088
+  Total non-zeros in factor = 450369
+  Total FP ops to factor    = 3947129
+ Itn      Primal Obj        Dual Obj  Prim Inf Upper Inf  Dual Inf Inf Ratio
+   0   1.7269205e+03  -4.9044527e+04  1.88e+05  5.25e+04  8.70e+04  1.00e+00
+   1   2.3955670e+03  -1.1223462e+04  2.98e+04  8.33e+03  2.32e+04  2.24e+00
+   2   2.2863585e+03   1.2978926e+02  2.01e+03  5.61e+02  3.69e+03  1.69e+01
+   3   1.7861052e+03   8.1034196e+02  1.23e+03  3.45e+02  7.72e+02  6.39e+01
+   4   1.2455920e+03   9.6121707e+02  3.57e+02  9.98e+01  2.30e+02  1.88e+02
+   5   1.1456365e+03   9.5847455e+02  2.35e+02  6.57e+01  1.56e+02  2.19e+02
+   6   1.0683590e+03   9.3378077e+02  1.87e+02  5.24e+01  1.36e+02  1.97e+02
+   7   1.0406969e+03   9.2172190e+02  1.64e+02  4.59e+01  1.18e+02  2.28e+02
+   8   9.7382996e+02   9.1154887e+02  9.99e+01  2.80e+01  9.46e+01  2.77e+02
+   9   9.6292956e+02   9.0801361e+02  8.66e+01  2.43e+01  7.79e+01  3.44e+02
+  10   9.5591424e+02   9.0269453e+02  7.88e+01  2.21e+01  5.98e+01  4.57e+02
+  11   9.4238055e+02   8.9824646e+02  6.46e+01  1.81e+01  4.75e+01  5.69e+02
+  12   9.1586585e+02   8.9494873e+02  3.55e+01  9.93e+00  3.68e+01  7.10e+02
+  13   9.0319366e+02   8.9416306e+02  1.95e+01  5.47e+00  3.29e+01  7.88e+02
+  14   8.9686333e+02   8.9313474e+02  1.20e+01  3.35e+00  2.82e+01  9.15e+02
+  15   8.9355383e+02   8.9265840e+02  6.85e+00  1.92e+00  2.49e+01  1.04e+03
+  16   8.8886902e+02   8.9194083e+02  2.74e+00  7.67e-01  2.23e+01  1.16e+03
+  17   8.8869830e+02   8.9088205e+02  2.14e+00  5.99e-01  1.62e+01  1.60e+03
+  18   8.8791027e+02   8.8970116e+02  1.57e+00  4.39e-01  1.24e+01  2.07e+03
+  19   8.8698563e+02   8.8766086e+02  1.13e+00  3.17e-01  7.48e+00  3.44e+03
+  20   8.8419932e+02   8.8663494e+02  3.05e-01  8.54e-02  5.77e+00  4.43e+03
+  21   8.8366144e+02   8.8620308e+02  1.27e-01  3.56e-02  5.03e+00  5.11e+03
+  22   8.8299329e+02   8.8519999e+02  3.21e-02  8.98e-03  3.56e+00  7.25e+03
+  23   8.8291094e+02   8.8498365e+02  1.70e-02  4.76e-03  3.24e+00  8.00e+03
+  24   8.8267742e+02   8.8392503e+02  6.81e-03  1.91e-03  1.85e+00  1.42e+04
+  25   8.8251667e+02   8.8367198e+02  3.62e-03  1.01e-03  1.55e+00  1.70e+04
+  26   8.8239418e+02   8.8333908e+02  1.81e-03  5.08e-04  1.18e+00  2.25e+04
+  27   8.8235187e+02   8.8280857e+02  1.45e-03  4.07e-04  6.41e-01  4.24e+04
+  28   8.8210548e+02   8.8249811e+02  4.80e-04  1.34e-04  4.00e-01  6.85e+04
+  29   8.8207974e+02   8.8236276e+02  3.62e-04  1.01e-04  2.91e-01  9.52e+04
+  30   8.8202849e+02   8.8219037e+02  1.90e-04  5.33e-05  1.63e-01  1.74e+05
+  31   8.8196153e+02   8.8212704e+02  6.66e-05  1.87e-05  1.24e-01  2.29e+05
+  32   8.8195367e+02   8.8208491e+02  2.54e-05  7.10e-06  9.45e-02  3.05e+05
+  33   8.8194726e+02   8.8198119e+02  1.22e-05  3.43e-06  2.63e-02  1.26e+06
+  34   8.8192456e+02   8.8194442e+02  1.60e-06  4.33e-07  1.01e-02  3.25e+06
+  35   8.8192391e+02   8.8192914e+02  1.00e-06  2.54e-07  2.91e-03  1.33e+07
+  36   8.8192139e+02   8.8192178e+02  1.37e-07  1.45e-08  1.99e-04  1.95e+08
+  37   8.8192125e+02   8.8192127e+02  7.86e-09  7.27e-10  1.00e-05  3.86e+09
+Barrier time = 1.62 sec. (1820.68 ticks)
+
+Total time on 5 threads = 1.62 sec. (1820.68 ticks)
+
+--- LP status (1): optimal.
+--- Cplex Time: 1.64sec (det. 1821.10 ticks)
+
+
+Optimal solution found
+Objective:          881.921246
+
+Solution Quality Statistics:
+                                   unscaled                scaled
+                               max         sum         max         sum
+primal infeasibility        5.079e-10   2.138e-09   5.079e-10   2.138e-09
+dual infeasibility          7.479e-10   5.057e-06   7.479e-10   5.057e-06
+primal residual             1.386e-12   9.476e-12   1.386e-12   9.476e-12
+dual residual               3.687e-09   1.495e-05   3.687e-09   1.495e-05
+primal solution vector      4.616e+02   1.086e+05   4.616e+02   1.086e+05
+dual solution vector        1.637e+02   5.904e+03   1.637e+02   5.904e+03
+slacks                      2.008e+04   1.890e+06   2.008e+04   1.890e+06
+reduced costs               1.625e+02   1.822e+03   1.625e+02   1.822e+03
+comp. slackness viol.       1.773e-09   1.687e-05
+
+
+--- Reading solution for model Dispatch
+--- Executing after solve: elapsed 0:00:02.361
+--- highres.gms(80889) 60 Mb
+--- GDX File (execute_unload) C:\Users\39366\Documents\GitHub\highRES-AtLAST\AtLAST_2030.gdx
+--- Putfile fname C:\Users\39366\Documents\GitHub\highRES-AtLAST\test_log
+--- Profile Summary (176 records processed)
+     1.923   0.060GB     80295 Solver     Dispatch
+     0.110   0.060GB     80295 Solve Fini Dispatch (420654)
+     0.094   0.060GB     80889 Unload     
+     0.063   0.060GB     80295 Solve Read Dispatch
+     0.063   0.043GB     80077 Equation   eq_elc_balance (26280)
+     0.032   0.060GB     80706 Assignment vre_curtail (8760)
+     0.031   0.024GB     80015 Equation   eq_obj (1)
+     0.031   0.059GB     80175 Equation   eq_trans_flow (35040)
+     0.031   0.060GB     80540 Assignment o_variableC (1)
+     0.016   0.060GB     80301 Assignment trans_f (2064)
+*** Status: Normal completion
+--- Job highres.gms Stop 07/04/23 15:21:13 elapsed 0:00:02.616
