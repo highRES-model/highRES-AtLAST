@@ -2,9 +2,7 @@
 # Visit https://bit.ly/cffinit to generate yours today!
 
 cff-version: 1.2.0
-title: >-
-  Power system optimization model for AtLAST
-  telescope
+title: Power system optimization model for AtLAST telescope
 message: >-
   If you use this software, please cite it using the
   metadata from this file.
@@ -16,9 +14,12 @@ authors:
     affiliation: University of Oslo
 identifiers:
   - type: doi
-    value: 10.5281/zenodo.7313731
+    value: 10.5281/zenodo.8316264
+  - type: url
+    value: >-
+      https://github.com/highRES-model/highRES-AtLAST/releases/tag/multi-objective
 repository-code: 'https://github.com/highRES-model/highRES-AtLAST'
 license: GPL-3.0
-commit: 2dc70f0a494b2aa33df98fb010f44f71ba914c69
-version: 1.0.0
-date-released: '2022-11-11'
+commit: e6b9b32006bb8a43ff90296f8f366e7d0dc6a48c
+version: multi-objective
+date-released: '2023-09-04'
