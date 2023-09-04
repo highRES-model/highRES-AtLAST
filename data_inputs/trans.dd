@@ -38,10 +38,22 @@ trans_sub_capex /
 line 2359.9
 /
 
+parameter
+transformer_capex /
+* in kUSD (fixed cost)
+3.272
+/
+
 paramter
 trans_fom /
 * in kUSD per 100km per MW per yr (we are using kUSD per 100km per yr)
 line 11.7995
+/
+
+parameter
+transformer_fom /
+* in kUSD per year (fixed cost)
+0.01636
 /
 
 * Not used
@@ -55,4 +67,9 @@ parameter
 PLT_trans /
 * in years
 line 40
+/
+
+parameter
+PLT_transformer /
+30
 /

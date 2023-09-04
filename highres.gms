@@ -61,6 +61,12 @@ $offdigit
 *   d   = Using a concentrated solar plant at an altitude of 2500m
 *
 * * NOSTORE = if store is only considered for frequency (0.1)
+* objective = mono-objective and multi-objective mode
+*   costs = minimize total system cost - mono-objective optimization problem
+*   ghg = minimize ghg emissions - mono-objective optimization problem
+*   Pareto = obtain the Pareto front according to costs and ghg objectives
+*   weight = obtain an specific trade-off between both objectives (value relative to
+*            environmental goal)
 
 
 $setglobal log "test_log"
@@ -68,16 +74,50 @@ $setglobal gdx2sql "OFF"
 $setglobal cplex_opt_file "1"
 
 * Scenarios selection
-$setglobal scenario "c1i"
+$setglobal scenario ""
 $setglobal NOSTORE "OFF"
 
 $ifThen "%scenario%" == ""
-$setglobal PV "OFF"
-$setglobal Diesel "OFF"
-$setglobal storage "OFF"
-$setglobal hydrogen "OFF"
-$setglobal CSP "ON"
+$setglobal PV "ON"
+$setglobal Diesel "ON"
+$setglobal storage "ON"
+$setglobal hydrogen "ON"
+$setglobal CSP "OFF"
 $setglobal altitude "2500"
+
+$setglobal outname "AtLAST_2030"
+
+* Objective function to minimize
+$setglobal objective "ghg"
+* costs
+* ghg
+* Pareto
+* weight
+scalar
+value_weight /1/;
+
+
+*** Parameter to be defined in order to run Pareto or weight ***
+* Battery lifetime 6.8
+Parameter
+ideal_costs /1113.149064/,
+ideal_ghg /518.111690/,
+nadir_costs /1555.014065/,
+nadir_ghg /2896.943402/;
+
+* Battery lifetime 14
+*Parameter
+*ideal_costs /982.825600/,
+*ideal_ghg /441.996795/,
+*nadir_costs /1171.638251/,
+*nadir_ghg /825.574974/;
+
+* Battery lifetime 25
+*Parameter
+*ideal_costs /848.646843/,
+*ideal_ghg /361.361817/,
+*nadir_costs /1011.599219/,
+*nadir_ghg /672.043069/;
 
 $else
 $INCLUDE data_inputs/AtLAST_scenarios.dd
@@ -104,8 +144,6 @@ $setglobal fx_natcap "NO"
 $set pen_gen "OFF"
 
 $setglobal fx_caps_to ""
-
-$setglobal outname "AtLAST_2030"
 
 
 $setglobal store_uc "OFF"
@@ -177,6 +215,12 @@ $IF "%hydrogen%" == ON $INCLUDE highres_h2_setup.gms
 
 $IF "%CSP%" == ON $INCLUDE highres_csp_setup.gms
 
+****************************************************************
+
+$INCLUDE highres_emissfact_setup.gms
+
+****************************************************************
+
 * WARNING: for parameter updates to work there can be no arithmetic in the code
 * before the update is run -> sensitivity data must be imported here
 
@@ -213,11 +257,6 @@ gen_maxramp(non_vre)=gen_maxramp(non_vre)/MWtoGW;
 * Existing VRE capacity aggregated to zones
 
 exist_vre_cap_r(vre,z,r) = 0.0;
-
-$ontext
-gen_exist_pcap_z(z,vre,"FX")=sum(r,exist_vre_cap_r(vre,z,r));
-
-$offtext
 
 * Existing zonal capacity aggregated to national
 
@@ -334,27 +373,40 @@ $endIf
 
 Variables
 costs                                    total electricty system costs
+ghg
 
 * Total cost components
 
 costs_gen_capex(z)                       Total Capital costs (kUSD)
 costs_gen_fom(z)                         Total Fixed O&M costs (kUSD)
 costs_gen_varom(z)                       Total Variable O&M costs (kUSD)
+ghg_gen_build(z)
+ghg_gen_OM(z)
+ghg_gen(z)
+
 $IF "%UC%" == ON costs_gen_start(z)
 costs_store_capex(z)                     Total storage Capital costs (kUSD)
 costs_store_fom(z)                       Total storage Fixed O&M costs (kUSD)
 costs_store_varom(z)                     Total storage Variable O&M costs (kUSD)
+ghg_store_build(z)
 cost_electrolyzer_capex(z)               Total electrolyzer Capital costs (kUSD)
 cost_electrolyzer_fom(z)                 Total electrolyzer Fixed O&M costs (kUSD)
 cost_electrolyzer_varom(z)               Total electrolyzer Variable O&M costs (kUSD)
+ghg_electrolyzer_build(z)
 cost_h2_storage_capex(z)                 Total H2 storage Capital costs (kUSD)
 cost_h2_storage_fom(z)                   Total H2 storage Fixed O&M costs (kUSD)
+ghg_h2_storage_build(z)
 cost_fuel_cell_capex(z)                  Total fuel cell Capital costs (kUSD)
 cost_fuel_cell_fom(z)                    Total fuel cell Fixed O&M costs (kUSD)
 cost_fuel_cell_varom(z)                  Total fuel cell Variable O&M costs (kUSD)
+ghg_fuel_cell_build(z)
+cost_desalination_varom(z)               Total desalination Variable O&M costs (kUSD)
+ghg_desalination(z)
 cost_h2_capex(z)                         Total H2 Capital costs (kUSD)
 cost_h2_fom(z)                           Total H2 Fixed O&M costs (kUSD)
 cost_h2_varom(z)                         Total H2 Variable O&M costs (kUSD)
+ghg_h2_build(z)
+ghg_h2(z)
 cost_SF_capex(z)                         Total SF Capital costs (kUSD)
 cost_TES_capex(z)                        Total TES Capital costs (kUSD)
 cost_PB_capex(z)                         Total PB Capital costs (kUSD)
@@ -365,6 +417,15 @@ $IF "%store_uc%" == ON costs_store_start(z)
 costs_trans_capex(z)                     Total transmission Capital costs (kUSD)
 costs_trans_fom(z)                       Total transmission Fixed O&M costs (kUSD)
 ;
+
+
+
+
+
+
+
+
+
 
 Positive variables
 var_new_pcap(g)                          new generation capacity at national level
@@ -513,16 +574,23 @@ $endIf
 
 
 Equations
-eq_obj
+eq_obj1
+eq_obj2
 
 eq_costs_gen_capex
 eq_costs_gen_fom
 eq_costs_gen_varom
+
+eq_ghg_gen_build
+eq_ghg_gen_OM
+eq_ghg_gen
 $IF "%UC%" == ON eq_costs_gen_start
 $ifThen "%storage%" == ON
 eq_costs_store_capex
 eq_costs_store_fom
 eq_costs_store_varom
+
+eq_ghg_store_build
 $endIf
 $ifThen "%hydrogen%" == ON
 eq_costs_electrolyzer_capex
@@ -533,9 +601,17 @@ eq_costs_h2_storage_fom
 eq_costs_fuel_cell_capex
 eq_costs_fuel_cell_fom
 eq_costs_fuel_cell_varom
+eq_costs_desalination_varom
 eq_costs_h2_capex
 eq_costs_h2_fom
 eq_costs_h2_varom
+
+eq_ghg_electrolyzer_build
+eq_ghg_h2_storage_build
+eq_ghg_fuel_cell_build
+eq_ghg_desalination
+eq_ghg_h2_build
+eq_ghg_h2
 $endIf
 $ifThen "%CSP%" == ON
 eq_costs_SF_capex
@@ -573,17 +649,14 @@ eq_trans_flow
 eq_trans_bidirect
 
 
-eq_co2_budget
-
-*eq_cap_margin
-
 ;
 
 ******************************************
 * OBJECTIVE FUNCTION
 ******************************************
 
-eq_obj .. costs =E= sum(z,
+*** Economical objective ***
+eq_obj1 .. costs =E= sum(z,
 
 costs_gen_capex(z)
 +costs_gen_fom(z)
@@ -605,7 +678,7 @@ $ifThen "%CSP%" == ON
 +cost_CSP_varom(z)
 $endIf
 $IF "%store_uc%" == ON +costs_store_start(z)
-$if "%altitude%" == "2500" + costs_trans_capex(z) + costs_trans_fom(z)
+$if "%altitude%" == "2500" + costs_trans_capex(z) + costs_trans_fom(z) + transformer_capex + transformer_fom
 $if "%altitude%" == "2500" + sum((h,trans_links(z,z_alias,trans)),var_trans_flow(h,z,z_alias,trans))*0.000001
 * include a small value to avoid meaningless flows
 );
@@ -646,12 +719,14 @@ eq_costs_h2_storage_fom(z) ..   cost_h2_storage_fom(z) =E= sum(H2T,(var_exist_h2
 eq_costs_fuel_cell_capex(z) .. cost_fuel_cell_capex(z) =E= sum(FC,var_new_fuel_cell_pcap_z(z,FC)*fuel_cell_capex(FC));
 eq_costs_fuel_cell_fom(z) .. cost_fuel_cell_fom(z) =E= sum(FC,(var_exist_fuel_cell_pcap_z(z,FC)+var_new_fuel_cell_pcap_z(z,FC))*fuel_cell_fom(FC));
 eq_costs_fuel_cell_varom(z) .. cost_fuel_cell_varom(z) =E= sum((h,FC)$fuel_cell_lim(FC,z),var_P_fuel_cell(h,z,FC)*fuel_cell_varom(FC));
+* Water used - desalination
+eq_costs_desalination_varom(z) .. cost_desalination_varom(z) =E= sum((h,fuel_cell_lim(FC,z)),var_P_fuel_cell(h,z,FC)*desalination_varom(FC));
+* Desalination cost (water)
 * Total costs
 eq_costs_h2_capex(z) .. cost_h2_capex(z) =E= cost_electrolyzer_capex(z) + cost_h2_storage_capex(z) + cost_fuel_cell_capex(z);
 eq_costs_h2_fom(z) .. cost_h2_fom(z) =E= cost_electrolyzer_fom(z) + cost_h2_storage_fom(z) + cost_fuel_cell_fom(z);
-eq_costs_h2_varom(z) .. cost_h2_varom(z) =E= cost_electrolyzer_varom(z) + cost_fuel_cell_varom(z);
+eq_costs_h2_varom(z) .. cost_h2_varom(z) =E= cost_electrolyzer_varom(z) + cost_fuel_cell_varom(z) + cost_desalination_varom(z);
 
-** Should be considered the use of water (cost)
 $endIf
 
 $ifThen "%CSP%" == ON
@@ -680,6 +755,68 @@ sum(trans_links(z,z_alias,trans),trans_links_dist(z,z_alias,trans)*trans_line_ca
 * assume 0.5% fom costs for transmission
 
 eq_costs_trans_fom(z) .. costs_trans_fom(z) =E= sum(trans_links(z,z_alias,trans),trans_links_dist(z,z_alias,trans)*trans_fom(trans));
+
+
+*** Environmental objective ***
+eq_obj2 .. ghg =E= (sum(z,
+
+ghg_gen_build(z)
++ghg_gen_OM(z)
++ghg_gen(z)
+$ifThen "%storage%" == ON
++ghg_store_build(z)
+$endIf
+$ifThen "%hydrogen%" == ON
++ghg_h2_build(z)
++ghg_h2(z)
+$endIf
+)
+* Transmission line and commute enissions are fixed values
+* transmission costs
+$if "%altitude%" == "2500" +sum(trans,trans_link_build_emis_a(trans))
+* Worker commute
++commute_emis)/1000;
+
+
+eq_ghg_gen_build(z) .. ghg_gen_build(z) =E= sum(g,var_new_pcap_z(z,g)*gen_build_emisfac_a(g));
+eq_ghg_gen_OM(z) .. ghg_gen_OM(z) =E= sum(g,gen_OM_emisfac(g)*var_tot_pcap_z(z,g));
+eq_ghg_gen(z) .. ghg_gen(z) =E= sum((h,g),var_gen(h,z,g)*gen_emisfac(g));
+$ifThen "%storage%" == ON
+eq_ghg_store_build(z) .. ghg_store_build(z) =E= sum(s,var_new_store_ecap_z(z,s)*store_build_emisfac_a(s));
+$endIf
+$ifThen "%hydrogen%" == ON
+* Electrolyzer
+eq_ghg_electrolyzer_build(z) .. ghg_electrolyzer_build(z) =E= sum(El,var_new_electrolyzer_pcap_z(z,El)*electrolyzer_build_emisfac_a(El));
+* H2 storage tank
+eq_ghg_h2_storage_build(z) .. ghg_h2_storage_build(z) =E= sum(H2T,var_new_h2_storage_pcap_z(z,H2T)*h2_storage_build_emisfac_a(H2T));
+* Fuel cell
+eq_ghg_fuel_cell_build(z) .. ghg_fuel_cell_build(z) =E= sum(FC,var_new_fuel_cell_pcap_z(z,FC)*fuel_cell_build_emisfac_a(FC));
+* Desalination plant
+eq_ghg_desalination(z) .. ghg_desalination(z) =E= sum((h,FC),var_P_fuel_cell(h,z,FC)*h2_des_emisfac(FC));
+* Total ghg
+eq_ghg_h2_build(z) .. ghg_h2_build(z) =E= ghg_electrolyzer_build(z) + ghg_h2_storage_build(z) + ghg_fuel_cell_build(z);
+eq_ghg_h2(z) .. ghg_h2(z) =E= ghg_desalination(z);
+$endIf
+
+
+
+*** Multi-objective proble - eps-constraint method ***
+* extra parameter for the multi-objective optimziation problem
+scalar w;
+$ifThen "%objective%" == "Pareto"
+
+equation
+eps_const;
+eps_const.. ghg =L= nadir_ghg - w*(nadir_ghg - ideal_ghg);
+$endIf
+
+
+$ifThen "%objective%" == "weight"
+
+equation
+eps_const;
+eps_const.. ghg =L= nadir_ghg - w*(nadir_ghg - ideal_ghg);
+$endIf
 
 
 
@@ -805,18 +942,6 @@ eq_trans_flow(h,trans_links(z,z_alias,trans)) .. var_trans_flow(h,z,z_alias,tran
 eq_trans_bidirect(trans_links(z,z_alias,trans)) ..  var_trans_pcap(z,z_alias,trans) =E= var_trans_pcap(z_alias,z,trans);
 
 
-***********************
-*** Misc. equations ***
-***********************
-
-* Emissions limit
-
-
-eq_co2_budget(yr) .. sum((gen_lim(z,non_vre),h)$(hr2yr_map(yr,h)),var_gen(h,z,non_vre)*gen_emisfac(non_vre))*1E3 =L=
-
-sum((z,h)$(hr2yr_map(yr,h)),demand(z,h))*2.
-
-
 * Capacity Margin
 
 *scalar dem_max;
@@ -828,19 +953,7 @@ sum((z,h)$(hr2yr_map(yr,h)),demand(z,h))*2.
 
 * Equation for minimum renewable share of generation, set based on restricting non VRE generation.
 
-set flexgen(non_vre) / Diesel / ;
-
-$IF "%RPS%" == "optimal" $GOTO optimal
-scalar dem_tot;
-dem_tot=sum((z,h),demand(z,h));
-
-Equations eq_max_non_vre;
-eq_max_non_vre .. sum((h,z,non_vre)$(gen_lim(z,non_vre) and not flexgen(non_vre)),var_gen(h,z,non_vre)) =E= dem_tot*(1-RPS_scalar);
-$label optimal
-
-
-
-Model Dispatch /all - eq_co2_budget/;
+Model Dispatch /all/;
 
 * don't usually use crossover but can be used to ensure
 * a simplex optimal solution is found
@@ -858,9 +971,8 @@ $set cplex_fname "cplex.op%cplex_opt_file%"
 
 $endIf
 
+$onText
 $onecho > %cplex_fname%
-
-
 cutpass=-1
 
 solvefinal=0
@@ -888,10 +1000,42 @@ epmrk=0.9999
 clonelog=1
 mipkappastats=1
 perind=1
+$offecho
+$offText
+$onecho > cplex.opt
+cutpass=-1
+solvefinal=0
+epgap=0.001
 
+solutiontype=2
 
+ppriind=1
+dpriind=5
+
+lpmethod=4
+threads=4
+
+heurfreq=5
+
+startalg=4
+subalg=4
+
+parallelmode=-1
+
+tilim=720000
+
+barepcomp=1E-7
+
+mipdisplay=5
+
+names no
+scaind=0
+epmrk=0.9999
+
+clonelog=1
 
 $offecho
+
 
 Dispatch.OptFile = 1;
 
@@ -926,15 +1070,71 @@ $offtext
 *option ScrDir = "./"
 *option SysDir = "data_inputs/"
 
-$ifThen "%UC%" == ON
+$ifThen "%objective%" == "weight"
+
+* Defining one specific weight
+$setglobal file_name "%outname%_%objective%"
+set
+info /Eco,Env,weight,model_status,solver_status/;
+parameter Pareto(info) To save the values of each objective function in the multi-objective optimization problem;
+w = value_weight;
+
+Solve Dispatch minimizing costs using LP;
+costs.up = costs.L;
+Solve Dispatch minimizing ghg using LP;
+
+Pareto('Eco') = costs.L;
+Pareto('Env') = ghg.L;
+Pareto('weight') = w;
+Pareto('model_status') = Dispatch.modelStat;
+Pareto('solver_status') = Dispatch.solveStat;
+
+$elseIf "%objective%" == "Pareto"
+
+$setglobal file_name "%outname%_%objective%"
+
+* Define Pareto curve
+set
+i /0*10/,
+info /Eco,Env,weight,model_status,solver_status/;
+parameter Pareto(i,info) To save the values of each objective function in the multi-objective optimization problem;
+w = 0;
+
+loop (i,
 
 Solve Dispatch minimizing costs using MIP;
+costs.up = costs.L;
+Solve Dispatch minimizing ghg using MIP;
+costs.up = inf;
 
-$else
+Pareto(i,'Eco') = costs.L;
+Pareto(i,'Env') = ghg.L;
+Pareto(i,'weight') = w;
+Pareto(i,'model_status') = Dispatch.modelStat;
+Pareto(i,'solver_status') = Dispatch.solveStat;
+w = w + 0.1;
 
+);
+
+
+$elseIf "%objective%" == "costs"
+
+$setglobal file_name "%outname%_%objective%"
+Solve Dispatch minimizing costs using MIP;
+costs.up = costs.L;
+Solve Dispatch minimizing ghg using MIP;
+
+$elseIf "%objective%" == "ghg"
+
+$setglobal file_name "%outname%_%objective%"
+Solve Dispatch minimizing ghg using MIP;
+ghg.up = ghg.L;
 Solve Dispatch minimizing costs using MIP;
 
 $endIf
+
+
+
 
 
 parameter trans_f(h,z,z_alias,trans);
@@ -979,8 +1179,8 @@ $INCLUDE highres_results.gms
 
 * dump data to GDX
 
-execute_unload "%outname%"
+execute_unload "%outname%_%objective%"
 
 * convert GDX to SQLite
 
-$IF "%gdx2sql%" == ON execute "gdx2sqlite -i %outname%.gdx -o %outname%.db -fast"
+$IF "%gdx2sql%" == ON execute "gdx2sqlite -i %outname%_%objective%.gdx -o %outname%_%objective%.db -fast"

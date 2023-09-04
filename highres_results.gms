@@ -388,8 +388,7 @@ parameter o_pgen_tot_z(z);
 $ifThen "%hydrogen%" == "ON"
 
 parameter o_H2_gen(FC);
-o_H2_gen(FC) = sum((h,fuel_cell_lim(FC,z)),var_P_fuel_cell.l(h,z,FC)*1)
-             - sum((h,electrolyzer_lim(El,z))$(not electrolyzer_lim("Import",z)),var_P_el.l(h,z,El)*1);
+o_H2_gen(FC) = sum((h,fuel_cell_lim(FC,z)),var_P_fuel_cell.l(h,z,FC)*1);
 
 parameter o_H2_imp;
 o_H2_imp = sum((h,electrolyzer_lim("Import",z)),var_P_el.l(h,z,"Import")*1)/HHV_h2;

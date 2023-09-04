@@ -101,5 +101,8 @@ LFP10HR 0.8
 parameter
 PLT_s /
 * in years
-LFP10HR 13
+*LFP10HR 13
+*LFP10HR 14
+*LFP10HR 6.8
+LFP10HR 25
 /

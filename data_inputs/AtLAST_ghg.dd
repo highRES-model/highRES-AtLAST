@@ -1,0 +1,133 @@
+
+parameter
+gen_emisfac /
+* kg CO2e per MWh
+Diesel 898.9336513
+/
+;
+
+parameter
+gen_build_emisfac /
+* kg CO2e per MW
+PV 972492.1316
+Diesel 44852.656
+/
+;
+
+parameter
+gen_repl_emisfac /
+* kg CO2e per MW per year
+PV 14003.8869
+Diesel 0
+/
+;
+
+parameter
+gen_OM_emisfac /
+* kg CO2e per year
+PV 18.51880408
+Diesel 0
+/
+;
+
+parameter
+trans_link_build_emis /
+* kg CO2e
+line 734974.213
+/
+;
+
+parameter
+trans_link_repl_emisfac /
+* kg COe per year
+line 0
+/
+;
+
+$ifThen "%storage%" == ON
+
+parameter
+store_build_emisfac /
+* kg CO2e per MWh
+LFP10HR 56447.62235
+/
+;
+
+parameter
+store_repl_emisfac /
+* kg CO2e per MWh per year
+* 6.8 years
+*LFP10HR 6096.343396
+* 14 years
+*LFP10HR 2961.081078
+* 25 years
+LFP10HR 0
+/
+;
+
+$endIf
+
+$ifThen "%hydrogen%" == ON
+parameter
+electrolyzer_build_emisfac /
+* kg CO2e per MWe
+Alkaline 122698.4952
+/
+;
+
+parameter
+electrolyzer_repl_emisfac /
+* kg CO2e pwer MWe per year
+Alkaline 981.5879263
+/
+
+parameter
+h2_storage_build_emisfac /
+* kg CO2e per kg H2 storage capacity
+CG 498.9658222
+/
+;
+
+parameter
+h2_storage_repl_emisfac /
+* kg CO2e per kg H2 storage capacity per year
+CG 0
+/
+;
+
+parameter
+fuel_cell_build_emisfac /
+* kg CO2e per MWe
+PEMFC 1841206.176
+/
+;
+
+parameter
+fuel_cell_repl_emisfac /
+* kg CO2e per MWe per year
+PEMFC 110472.3706
+/
+;
+
+parameter
+h2_des_emisfac /
+* kg CO2e per MWh from PEMFC
+PEMFC 0.090418839
+/
+;
+
+$endIf
+
+parameter
+commute_emis /
+* kg CO2e per year
+90.74214
+/
+;
+
+parameter
+PLT /
+* years
+25
+/
+;

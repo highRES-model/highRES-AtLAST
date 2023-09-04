@@ -19,12 +19,12 @@ PEMFC
 parameter
 electrolyzer_lim_pcap_z /
 * in MW
-$if "%altitude%" == "2500" SITE.import.UP inf
+$if "%altitude%" == "2500" SITE.import.UP 0
 $if "%altitude%" == "2500" SITE.Alkaline.UP inf
-$if "%altitude%" == "2500" SITE.PEM.UP inf
-$if "%altitude%" == "5000" ATL.import.UP inf
+$if "%altitude%" == "2500" SITE.PEM.UP 0
+$if "%altitude%" == "5000" ATL.import.UP 0
 $if "%altitude%" == "5000" ATL.Alkaline.UP inf
-$if "%altitude%" == "5000" ATL.PEM.UP inf
+$if "%altitude%" == "5000" ATL.PEM.UP 0
 /
 
 parameter
@@ -46,8 +46,8 @@ electrolyzer_exist_pcap_z /
 parameter
 h2_storage_lim_pcap_z /
 * in kg
-$if "%altitude%" == "2500" SITE.TiFe.UP inf
-$if "%altitude%" == "5000" ATL.TiFe.UP inf
+$if "%altitude%" == "2500" SITE.TiFe.UP 0
+$if "%altitude%" == "5000" ATL.TiFe.UP 0
 $if "%altitude%" == "2500" SITE.CG.UP inf
 $if "%altitude%" == "5000" ATL.CG.UP inf
 /
@@ -73,7 +73,8 @@ parameter
 PLT_elect /
 * in years
 Import 18
-Alkaline 18
+*Alkaline 18
+Alkaline 20.8
 PEM 18
 /
 
@@ -87,7 +88,8 @@ CG 18
 parameter
 PLT_fuelcell /
 * in years
-PEMFC 18
+*PEMFC 18
+PEMFC 10
 /
 
 * Electrolyzer
@@ -249,4 +251,10 @@ PEMFC 14.1
 parameter
 fuel_cell_varom /
 PEMFC 0.0009394
+/
+
+parameter
+desalination_varom /
+* in kUSD per MWh
+PEMFC 0.00017103
 /

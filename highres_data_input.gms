@@ -72,7 +72,9 @@ parameter demand(z,h)                           Electricity demand by zone per h
 parameter CRF_g(g) Capital recovery factor;
 parameter CRF_trans(trans) Capital recovery factor for transmission line;
 parameter PLT_g(g) Project lifetime (year);
+parameter CRF_transformer Capital recovery factor for transformer;
 parameter PLT_trans(trans) Project lifetime (year) for transmission line;
+parameter PLT_transformer Project lifetime (year) for transformer;
 ****************************************************************
 
 scalar co2_budget;
@@ -94,10 +96,8 @@ $INCLUDE data_inputs/%esys_scen%_demand_%dem_yr%.dd
 Parameter
 vre_gen(h,vre,r) /
 $INCLUDE data_inputs/cf_pv_%weather_yr%.dd
-*$INCLUDE cf_PV.dd
 /;
 
-* $IF %fx_natcap% == "YES" $INCLUDE %esys_scen%_gen_fx_natcap.dd
 
 
 gen_capex(g)=gen_capex%model_yr%(g);
@@ -107,9 +107,23 @@ gen_fuelcost(g)=gen_fuelcost%model_yr%(g);
 
 CRF_g(g) = IR/(1-(1+IR)**(-PLT_g(g)));
 CRF_trans(trans) = IR/(1-(1+IR)**(-PLT_trans(trans)));
+CRF_transformer = IR/(1-(1+IR)**(-PLT_transformer));
 
 gen_capex(g) = gen_capex(g)*CRF_g(g);
-trans_line_capex(trans) = trans_line_capex(trans)*CRF_trans(trans)
+trans_line_capex(trans) = trans_line_capex(trans)*CRF_trans(trans);
+transformer_capex = transformer_capex*CRF_transformer;
+
+
+* Special case for PV
+set y_i /1*4/;
+parameter y_repl(y_i) /
+1 5,
+2 10,
+3 15,
+4 20/;
+gen_capex('PV') = 0.08*gen_capex%model_yr%('PV')*sum(y_i,IR/(1-(1+IR)**(-y_repl(y_i)))) +
+                    gen_capex%model_yr%('PV')*IR/(1-(1+IR)**(-25));
+    
 
 ****************************************************************
 

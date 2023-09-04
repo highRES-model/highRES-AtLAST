@@ -1,32 +1,31 @@
-
-
 cutpass=-1
-
 solvefinal=0
-epgap=0.01
+epgap=0.001
 
-barorder=0
-baralg=0
 solutiontype=2
-barepcomp=1E-7
-subalg=4
-numericalemphasis=0
 
-heurfreq=1
+ppriind=1
+dpriind=5
 
 lpmethod=4
-threads=5
+threads=4
+
+heurfreq=5
+
 startalg=4
+subalg=4
 
 parallelmode=-1
+
 tilim=720000
+
+barepcomp=1E-7
+
 mipdisplay=5
-names yes
-scaind=1
+
+names no
+scaind=0
 epmrk=0.9999
+
 clonelog=1
-mipkappastats=1
-perind=1
-
-
 
